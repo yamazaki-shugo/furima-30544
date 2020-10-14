@@ -50,12 +50,12 @@
 - belongs_to :item
 - has_one :shipping-address
 
-## shipping-addresses テーブル
+## shipping_addresses テーブル
 
 | Column            | Type       |  Options                 |
 | ----------------- | ---------  | ------------------------ |
 | postal_code       | string     | null: false              |
-| prefectures       | integer    | null: false, Active Hash |
+| prefectures_id    | integer    | null: false, Active Hash |
 | municipality      | string     | null: false              |
 | address           | string     | null: false              |
 | building_name     | string     |                          |
