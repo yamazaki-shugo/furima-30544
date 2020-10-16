@@ -18,13 +18,16 @@ class Item < ApplicationRecord
     validates :prefecture
     validates :days_to_ship
     validates :price
+    validates :image
   end
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :item_status_id
     validates :burden_type_id
-    validates :prefectures_id
+    validates :prefecture_id
     validates :days_to_ship_id
   end
+
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
 end

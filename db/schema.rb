@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_034537) do
     t.integer "category_id"
     t.integer "item_status_id"
     t.integer "burden_type_id"
-    t.integer "prefectures_id"
+    t.integer "prefecture_id"
     t.integer "days_to_ship_id"
     t.integer "price"
     t.bigint "user_id"
