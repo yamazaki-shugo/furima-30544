@@ -10,14 +10,14 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
 
   with_options presence: true do
-    validates :name
-    validates :description
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
     validates :category
     validates :item_status
     validates :burden_type
     validates :prefecture
     validates :days_to_ship
-    validates :price
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
     validates :image
   end
 
@@ -29,9 +29,4 @@ class Item < ApplicationRecord
     validates :days_to_ship_id
   end
 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-
-  validates :name, length: { maximum: 40 }
-
-  validates :description, length: { maximum: 1000 }
 end
