@@ -1,8 +1,8 @@
 class PurchasersController < ApplicationController
-  before_action :authenticate_user!, only: :index
+  attr_accessor :token
   before_action :item_find, only: [:index, :create]
   before_action :move_to_root, only: :index
-  attr_accessor :token
+  before_action :authenticate_user!, only: :index
   def index
     @purchaser_card = PurchaserCard.new
   end
@@ -38,6 +38,6 @@ class PurchasersController < ApplicationController
   end
 
   def move_to_root
-    redirect_to root_path unless user_signed_in? && current_user.id != @item.user.id && !(@item.purchaser.present?)
+    redirect_to root_path if (user_signed_in? && current_user.id == @item.user.id) || @item.purchaser.present?
   end
 end
