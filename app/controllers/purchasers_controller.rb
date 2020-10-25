@@ -1,5 +1,4 @@
 class PurchasersController < ApplicationController
-  attr_accessor :token
   before_action :item_find, only: [:index, :create]
   before_action :move_to_root, only: :index
   before_action :authenticate_user!, only: :index
@@ -13,7 +12,7 @@ class PurchasersController < ApplicationController
       pay_item
       @purchaser_card.save
       redirect_to root_path
-    else  
+    else
       render 'index'
     end
   end
@@ -25,12 +24,12 @@ class PurchasersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: purchaser_params[:token],
-        currency: 'jpy'
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: purchaser_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def item_find
